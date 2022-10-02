@@ -9,15 +9,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type User struct {
+type Site struct {
 	URL    string
 	Yandex int
 	Google int
 }
 
 func URL(w http.ResponseWriter, r *http.Request) {
-	u1 := User{"site.ru", 50, 60}
-	json_data, err := json.Marshal(u1)
+	Site := Site{"site.ru", 50, 60}
+	json_data, err := json.Marshal(Site)
 
 	if err != nil {
 		log.Fatal(err)
