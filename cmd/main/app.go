@@ -1,4 +1,4 @@
-package main
+package main1
 
 import (
 	"encoding/json"
@@ -10,13 +10,12 @@ import (
 )
 
 type Site struct {
-	URL    string
-	Yandex int
-	Google int
+	URL   string
+	Title string
 }
 
 func URL(w http.ResponseWriter, r *http.Request) {
-	Site := Site{"site.ru", 50, 60}
+	Site := Site{"site.ru", Site}
 	json_data, err := json.Marshal(Site)
 
 	if err != nil {
@@ -26,7 +25,7 @@ func URL(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(string(json_data))
 }
 
-func main() {
+func main1() {
 	r := mux.NewRouter()
 
 	// Routers
