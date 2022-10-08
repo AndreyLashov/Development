@@ -8,25 +8,14 @@ import (
 	"net/http"
 	"regexp"
 	"sync"
-
-	"github.com/gorilla/mux"
 )
 
-func main() {
-	r := mux.NewRouter()
-
-	// Routers
-	r.HandleFunc("/", Marshal).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", r))
-	fmt.Println("Server and Port 8080 Start")
-}
-
-func Marshal(w http.ResponseWriter, r *http.Request) {
+func Meta(w http.ResponseWriter, r *http.Request) {
 
 	urls := []string{
 		"https://vl.ru",
-		"https://digital.gov.ru/ru/",
-		"http://rubycode.ru/",
+		"https://vk.com/",
+		"https://web.telegram.org/",
 	}
 
 	var wg sync.WaitGroup
@@ -37,13 +26,12 @@ func Marshal(w http.ResponseWriter, r *http.Request) {
 		go func(url string) {
 
 			defer wg.Done()
-			w.Header().Set("Content-Type", "application/json")
 			content := doReq(url)
 			title := getTitle(content)
 			mapVar1 := map[string]string{"url": url, "title": title}
 			mapVar2, _ := json.Marshal(mapVar1)
 
-			fmt.Sprintln(string(mapVar2))
+			fmt.Println(string(mapVar2))
 
 		}(u)
 	}
