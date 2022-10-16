@@ -1,4 +1,4 @@
-package main
+package meta
 
 import (
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 	"sync"
 )
 
-func Meta(w http.ResponseWriter, r *http.Request) {
+func meta(w http.ResponseWriter, r *http.Request) {
 
 	urls := []string{
 		"https://vl.ru",
